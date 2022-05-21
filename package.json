@@ -1,0 +1,27 @@
+{
+  "name": "Data-structures-and-algorithms",
+  "version": "1.0.0",
+  "description": "数据结构和算法(来自双越老师的2周刷完一百道面试题)",
+  "main": "index.js",
+  "dependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "jest": "^27.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caogit/Data-structures-and-algorithms.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caogit/Data-structures-and-algorithms/issues"
+  },
+  "homepage": "https://github.com/caogit/Data-structures-and-algorithms#readme"
+}
