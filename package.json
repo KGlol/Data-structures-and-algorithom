@@ -1,7 +1,7 @@
 {
   "name": "Data-structures-and-algorithms",
   "version": "1.0.0",
-  "description": "数据结构和算法(来自双越老师的2周刷完一百道面试题)",
+  "description": "算法",
   "main": "index.js",
   "dependencies": {
     "@babel/core": "^7.17.5",
