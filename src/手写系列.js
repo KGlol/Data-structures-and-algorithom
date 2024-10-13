@@ -66,3 +66,43 @@ function myNew(Fn) {
   return Object(res) === res ? res : obj
 }
 // 手写promise（暂时不写）
+
+// vue2响应式
+function defineReactive(data, key) {
+  const oldValue = data[key]
+  if (!oldValue) return
+  if (typeof oldValue === 'object') {
+    for (const index in data) {
+      if (Object.hasOwnProperty.call(data, index)) {
+        defineReactive(oldValue, index)
+      }
+    }
+  }
+  Object.defineProperty(data, key, {
+    get() {
+      // do sth
+      return data[key]
+    },
+    set(value) {
+      // do sth
+      if (oldValue !== value) {
+        data[key] = value
+      }
+    }
+  })
+
+}
+
+/**
+ * @description: 实现函数柯里化，原理就是递归收集原函数的参数
+ * @param {function} fun
+ * @param {*} args
+ * @return {*}
+ */
+function currying(fun, ...args) {
+  return function (...restArgs) {
+    const allArgs = args.concat(restArgs)
+    if (allArgs.length < fun.length) return currying(fun, ...allArgs)
+    else return fun(...allArgs)
+  }
+}
