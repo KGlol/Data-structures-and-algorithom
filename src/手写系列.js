@@ -95,6 +95,7 @@ function defineReactive(data, key) {
 
 /**
  * @description: 实现函数柯里化，原理就是递归收集原函数的参数
+ * 柯里化的意义是能够固定部分函数，例如变量保存传入第一个参数的执行结果，固定第一个参数，更便捷地执行
  * @param {function} fun
  * @param {*} args
  * @return {*}
@@ -106,3 +107,38 @@ function currying(fun, ...args) {
     else return fun(...allArgs)
   }
 }
+
+/**
+ * @description: 写一个可以取消的promise
+ * @param {AbortController}  
+ * @return {promise}
+ */
+class CancelablePromise {
+  static cancelErrorName = 'mission canceled';
+  _reject;
+  constructor(executor, signal) {
+    const promise = new Promise((resolve, reject) => {
+      // 保存reject
+      this._reject = reject;
+      executor(resolve, reject)
+    })
+    signal.addEventListener('abort', () => {
+      this._reject('mission canceled')
+    })
+    return promise
+  }
+}
+// 测试cancelablePromise
+const promiseMethod = function (resolve, reject) {
+  setTimeout(() => {
+    console.log('执行完毕 :>> ');
+    resolve('aaa')
+  }, 5000);
+}
+
+const signal = new AbortController()
+const promise = new CancelablePromise(promiseMethod, signal.signal)
+setTimeout(() => {
+  signal.abort()
+  console.log(promise);
+}, 2000)
